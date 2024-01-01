@@ -1,6 +1,7 @@
 import { HStack, IconButton, Image, useColorMode } from '@chakra-ui/react';
-import logo from '../assets/react.svg';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+
+import logo from '../assets/react.svg';
 
 const NavBar = () => {
   const { toggleColorMode, colorMode } = useColorMode();

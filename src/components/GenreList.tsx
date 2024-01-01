@@ -8,12 +8,14 @@ import {
   Card,
 } from '@chakra-ui/react';
 
-import useGenres, { Genre } from '../hooks/useGenres';
+import useGenres from '../hooks/useGenres';
+import Genre from '../models/Genre';
 
 interface GenreListProps {
   selectedGenre: Genre | null;
   updateSelectedGenre: (genre: Genre) => void;
 }
+
 const GenreList = ({ selectedGenre, updateSelectedGenre }: GenreListProps) => {
   const { data, isLoading, error } = useGenres();
   if (isLoading) {

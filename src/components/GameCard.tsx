@@ -1,13 +1,14 @@
 import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react';
 
-import { Game } from '../hooks/useGames';
 import PlatformList from './Platforms';
 import CriticScore from './CriticScore';
 import { cropImage } from '../services/image-url';
+import Game from '../models/Game';
 
 interface GameCardProps {
   game: Game;
 }
+
 const GameCard = ({ game }: GameCardProps) => {
   return (
     <Card>
