@@ -6,6 +6,7 @@ import {
   List,
   Spinner,
   Card,
+  Heading,
 } from '@chakra-ui/react';
 
 import useGenres from '../hooks/useGenres';
@@ -36,28 +37,34 @@ const GenreList = ({ selectedGenre, updateSelectedGenre }: GenreListProps) => {
   }
 
   return (
-    <List>
-      {data.map((genre) => (
-        <HStack key={genre.id} gap="1rem" paddingY="5px">
-          <Image
-            boxSize="32px"
-            borderRadius="8px"
-            src={genre.image_background}
-            alt={genre.name}
-          />
+    <>
+      <Heading fontSize="2xl" marginBottom="1rem">
+        Genres
+      </Heading>
+      <List>
+        {data.map((genre) => (
+          <HStack key={genre.id} gap="1rem" paddingY=".5rem">
+            <Image
+              boxSize="32px"
+              borderRadius="8px"
+              src={genre.image_background}
+              alt={genre.name}
+              objectFit="cover"
+            />
 
-          <Button variant="link" onClick={() => updateSelectedGenre(genre)}>
-            <Text
-              textAlign="left"
-              fontWeight={selectedGenre?.id === genre.id ? 'bold' : 'normal'}
-              whiteSpace="wrap"
-            >
-              {genre.name}
-            </Text>
-          </Button>
-        </HStack>
-      ))}
-    </List>
+            <Button variant="link" onClick={() => updateSelectedGenre(genre)}>
+              <Text
+                textAlign="left"
+                fontWeight={selectedGenre?.id === genre.id ? 'bold' : 'normal'}
+                whiteSpace="wrap"
+              >
+                {genre.name}
+              </Text>
+            </Button>
+          </HStack>
+        ))}
+      </List>
+    </>
   );
 };
 

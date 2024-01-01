@@ -6,6 +6,7 @@ import GenreList from './components/GenreList';
 import PlatformSelector from './components/PlatformSelector';
 import SortSelector from './components/SortSelector';
 import useGameQuery from './hooks/useGameQuery';
+import SearchHeader from './components/SearchHeader';
 
 function App() {
   const { gameQuery, setGenre, setPlatform, setOrder, setSearchQuery } =
@@ -25,6 +26,7 @@ function App() {
       <GridItem area="nav">
         <NavBar onSearchQuery={setSearchQuery} />
       </GridItem>
+
       <Show above="lg">
         <GridItem area="aside" paddingX="5px">
           <GenreList
@@ -33,8 +35,10 @@ function App() {
           />
         </GridItem>
       </Show>
-      <GridItem area="main">
-        <HStack paddingLeft=".2rem" paddingBottom="1rem" gap="1rem">
+
+      <GridItem area="main" paddingLeft="1rem">
+        <SearchHeader gameQuery={gameQuery} />
+        <HStack paddingBottom="1rem" gap="1rem">
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             updateSelectedPlatform={setPlatform}
