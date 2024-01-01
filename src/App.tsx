@@ -1,14 +1,24 @@
 import { useState } from 'react';
-import { Grid, GridItem, Show } from '@chakra-ui/react';
+import { Grid, GridItem, HStack, Show } from '@chakra-ui/react';
 
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
 import { Genre } from './hooks/useGenres';
+import { Platform } from './hooks/useGames';
+import PlatformSelector from './components/PlatformSelector';
+
 import './App.css';
+import SortSelector from './components/SortSelector';
+
+interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+  ordering: string | null;
+}
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
     <>
@@ -28,13 +38,29 @@ function App() {
         <Show above="lg">
           <GridItem area="aside" paddingX="5px">
             <GenreList
-              selectedGenre={selectedGenre}
-              updateSelectedGenre={setSelectedGenre}
+              selectedGenre={gameQuery.genre}
+              updateSelectedGenre={(genre) =>
+                setGameQuery({ ...gameQuery, genre })
+              }
             />
           </GridItem>
         </Show>
         <GridItem area="main">
-          <GameGrid selectedGenre={selectedGenre} />
+          <HStack paddingLeft=".2rem" paddingBottom="1rem" gap="1rem">
+            <PlatformSelector
+              selectedPlatform={gameQuery.platform}
+              updateSelectedPlatform={(platform) =>
+                setGameQuery({ ...gameQuery, platform })
+              }
+            />
+            <SortSelector
+              selectedOrder={gameQuery.ordering}
+              updateSelectedOrder={(ordering) =>
+                setGameQuery({ ...gameQuery, ordering })
+              }
+            />
+          </HStack>
+          <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
     </>
@@ -42,3 +68,5 @@ function App() {
 }
 
 export default App;
+
+export { GameQuery };
