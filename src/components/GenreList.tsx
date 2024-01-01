@@ -50,7 +50,7 @@ const GenreList = ({ selectedGenre, updateSelectedGenre }: GenreListProps) => {
             <Text
               textAlign="left"
               fontWeight={selectedGenre?.id === genre.id ? 'bold' : 'normal'}
-              style={{ textWrap: 'wrap' }}
+              whiteSpace="wrap"
             >
               {genre.name}
             </Text>

@@ -8,7 +8,8 @@ import SortSelector from './components/SortSelector';
 import useGameQuery from './hooks/useGameQuery';
 
 function App() {
-  const { gameQuery, setGenre, setPlatform, setOrder } = useGameQuery();
+  const { gameQuery, setGenre, setPlatform, setOrder, setSearchQuery } =
+    useGameQuery();
 
   return (
     <Grid
@@ -22,7 +23,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onSearchQuery={setSearchQuery} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX="5px">

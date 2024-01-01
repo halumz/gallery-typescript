@@ -18,7 +18,11 @@ const useGameQuery = () => {
     setGameQuery({ ...gameQuery, ordering });
   };
 
-  return { gameQuery, setGenre, setPlatform, setOrder };
+  const setSearchQuery = (search: string) => {
+    setGameQuery({ ...gameQuery, search });
+  };
+
+  return { gameQuery, setGenre, setPlatform, setOrder, setSearchQuery };
 };
 
 export default useGameQuery;
