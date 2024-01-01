@@ -35,7 +35,7 @@ Add prettier config in `.prettierrc`
   "singleQuote": true,
   "tabWidth": 2,
   "semi": true,
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": []
 }
 ```
 
@@ -50,5 +50,25 @@ And add a formatter in script section of package.json
 ```bash
 git init
 git add .
-git commit -m "Initializing the project"
+git commit -m "Initializing project"
 ```
+
+## Installing Chakra UI
+There are many UI libraries available for React. We will use [Chakra UI](https://chakra-ui.com/) for this project. Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. It is also very easy to use. 
+- Let's install Chakra UI.
+
+```bash
+yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+- Now, let's add Chakra UI provider in `main.tsx` file.
+
+```tsx
+import { ChakraProvider } from '@chakra-ui/react'
+...
+
+<ChakraProvider>
+  <App />
+</ChakraProvider>
+...
+```
+
