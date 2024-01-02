@@ -54,12 +54,15 @@ git commit -m "Initializing project"
 ```
 
 ## Installing Chakra UI
-There are many UI libraries available for React. We will use [Chakra UI](https://chakra-ui.com/) for this project. Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. It is also very easy to use. 
+
+There are many UI libraries available for React. We will use [Chakra UI](https://chakra-ui.com/) for this project. Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. It is also very easy to use.
+
 - Let's install Chakra UI.
 
 ```bash
 yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
 ```
+
 - Now, let's add Chakra UI provider in `main.tsx` file.
 
 ```tsx
@@ -72,3 +75,31 @@ import { ChakraProvider } from '@chakra-ui/react'
 ...
 ```
 
+## Deployment on gh-pages
+
+- Let's add gh-pages to our project.
+
+```bash
+yarn add -D gh-pages
+```
+
+- Add deploy script in `package.json`
+
+```json
+"predeploy": "gh-pages -d dist",
+"deploy": "yarn build && yarn predeploy"
+```
+
+- Add homepage in `package.json`
+
+```json
+"homepage": "https://<username>.github.io/<repo-name>"
+```
+
+In this project it will be https://halumz.github.io/gallery-typescript
+
+- Now, let's deploy our project.
+
+```bash
+yarn deploy
+```
