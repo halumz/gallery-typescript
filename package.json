@@ -10,8 +10,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write ./src",
-    "predeploy": "gh-pages -d dist",
-    "deploy": "yarn build && yarn predeploy"
+    "pre-deploy": "gh-pages -d dist",
+    "deploy": "yarn build && yarn pre-deploy"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",

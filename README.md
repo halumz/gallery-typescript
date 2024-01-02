@@ -86,8 +86,8 @@ yarn add -D gh-pages
 - Add deploy script in `package.json`
 
 ```json
-"predeploy": "gh-pages -d dist",
-"deploy": "yarn build && yarn predeploy"
+"pre-deploy": "gh-pages -d dist",
+"deploy": "yarn build && yarn pre-deploy"
 ```
 
 - Add homepage in `package.json`
