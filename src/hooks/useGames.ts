@@ -5,8 +5,8 @@ import ReactQueryClient from '../services/react-query-client';
 const useGames = (gameQuery: GameQuery) =>
   new ReactQueryClient<Game>('games').getAllUseQuery(['games', gameQuery], {
     params: {
-      genres: gameQuery.genre?.id,
-      parent_platforms: gameQuery.platform?.id,
+      genres: gameQuery.genreId,
+      parent_platforms: gameQuery.platformId,
       search: gameQuery.search,
       ordering: gameQuery.ordering,
     },

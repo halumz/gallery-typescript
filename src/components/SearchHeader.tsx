@@ -1,14 +1,18 @@
 import { Heading } from '@chakra-ui/react';
 
 import GameQuery from '../models/GameQuery';
+import useGenre from '../hooks/useGenre';
+import usePlatform from '../hooks/usePlatform';
 
 interface SearchHeaderProps {
   gameQuery: GameQuery;
 }
 const SearchHeader = ({ gameQuery }: SearchHeaderProps) => {
+  const selectedGenre = useGenre(gameQuery.genreId);
+  const selectedPlatform = usePlatform(gameQuery.platformId);
   const text = [
-    gameQuery.platform?.name || '',
-    gameQuery.genre?.name || '',
+    selectedPlatform?.name || '',
+    selectedGenre?.name || '',
     'Games',
   ].join(' ');
 

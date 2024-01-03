@@ -1,9 +1,6 @@
-import Genre from './Genre';
-import Platform from './Platform';
-
 interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId?: number;
+  platformId?: number;
   ordering: string | null;
   search: string | null;
 }

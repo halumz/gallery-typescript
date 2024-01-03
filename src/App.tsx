@@ -9,7 +9,7 @@ import useGameQuery from './hooks/useGameQuery';
 import SearchHeader from './components/SearchHeader';
 
 function App() {
-  const { gameQuery, setGenre, setPlatform, setOrder, setSearchQuery } =
+  const { gameQuery, setGenreId, setPlatformId, setOrder, setSearchQuery } =
     useGameQuery();
 
   return (
@@ -30,8 +30,8 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX="5px">
           <GenreList
-            selectedGenre={gameQuery.genre}
-            updateSelectedGenre={setGenre}
+            selectedGenreId={gameQuery.genreId}
+            updateSelectedGenreId={setGenreId}
           />
         </GridItem>
       </Show>
@@ -40,8 +40,8 @@ function App() {
         <SearchHeader gameQuery={gameQuery} />
         <HStack paddingBottom="1rem" gap="1rem">
           <PlatformSelector
-            selectedPlatform={gameQuery.platform}
-            updateSelectedPlatform={setPlatform}
+            selectedPlatformId={gameQuery.platformId}
+            updateSelectedPlatformId={setPlatformId}
           />
           <SortSelector
             selectedOrder={gameQuery.ordering}

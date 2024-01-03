@@ -10,14 +10,16 @@ import {
 } from '@chakra-ui/react';
 
 import useGenres from '../hooks/useGenres';
-import Genre from '../models/Genre';
 
 interface GenreListProps {
-  selectedGenre: Genre | null;
-  updateSelectedGenre: (genre: Genre) => void;
+  selectedGenreId?: number;
+  updateSelectedGenreId: (genreId: number) => void;
 }
 
-const GenreList = ({ selectedGenre, updateSelectedGenre }: GenreListProps) => {
+const GenreList = ({
+  selectedGenreId,
+  updateSelectedGenreId,
+}: GenreListProps) => {
   const { data, isLoading, error } = useGenres();
   if (isLoading) {
     return (
@@ -52,10 +54,13 @@ const GenreList = ({ selectedGenre, updateSelectedGenre }: GenreListProps) => {
               objectFit="cover"
             />
 
-            <Button variant="link" onClick={() => updateSelectedGenre(genre)}>
+            <Button
+              variant="link"
+              onClick={() => updateSelectedGenreId(genre.id)}
+            >
               <Text
                 textAlign="left"
-                fontWeight={selectedGenre?.id === genre.id ? 'bold' : 'normal'}
+                fontWeight={selectedGenreId === genre.id ? 'bold' : 'normal'}
                 whiteSpace="wrap"
               >
                 {genre.name}
