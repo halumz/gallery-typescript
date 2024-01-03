@@ -1,6 +1,11 @@
 import Platform from '../models/Platform';
-import useData from './useData';
+import ReactQueryClient from '../services/react-query-client';
+import defaultPlatforms from '../data/platforms.ts';
 
-const usePlatforms = () => useData<Platform>('platforms/lists/parents');
+const usePlatforms = () =>
+  new ReactQueryClient<Platform>(
+    'platforms/lists/parents',
+    defaultPlatforms
+  ).getAllUseQuery(['platforms']);
 
 export default usePlatforms;

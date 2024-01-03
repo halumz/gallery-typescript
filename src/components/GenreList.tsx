@@ -42,7 +42,7 @@ const GenreList = ({ selectedGenre, updateSelectedGenre }: GenreListProps) => {
         Genres
       </Heading>
       <List>
-        {data.map((genre) => (
+        {data?.results?.map((genre) => (
           <HStack key={genre.id} gap="1rem" paddingY=".5rem">
             <Image
               boxSize="32px"

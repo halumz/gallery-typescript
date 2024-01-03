@@ -1,6 +1,10 @@
 import Genre from '../models/Genre';
-import useData from './useData';
+import ReactQueryClient from '../services/react-query-client';
+import defaultGenres from '../data/genres.ts';
 
-const useGenres = () => useData<Genre>('genres');
+const useGenres = () =>
+  new ReactQueryClient<Genre>('genres', defaultGenres).getAllUseQuery([
+    'genres',
+  ]);
 
 export default useGenres;

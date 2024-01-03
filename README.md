@@ -75,6 +75,29 @@ import { ChakraProvider } from '@chakra-ui/react'
 ...
 ```
 
+## Adding React query
+
+We will use [React Query](https://react-query.tanstack.com/) to fetch data from the API. React Query is often described as the missing data-fetching library for React. It is very easy to use and has many features. Let's install React Query.
+
+```bash
+arn add @tanstack/react-query @tanstack/react-query-devtools
+```
+
+- Now, let's add React Query provider in `main.tsx` file.
+
+```tsx
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+
+const queryClient = new QueryClient()
+...
+<QueryClientProvider client={queryClient}>
+  <App />
+  <ReactQueryDevtools initialIsOpen={false} />
+</QueryClientProvider>
+```
+
 ## Deployment on gh-pages
 
 - Let's add gh-pages to our project.

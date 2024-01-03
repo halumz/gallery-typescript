@@ -1,19 +1,15 @@
 import Game from '../models/Game';
 import GameQuery from '../models/GameQuery';
-import useData from './useData';
+import ReactQueryClient from '../services/react-query-client';
 
 const useGames = (gameQuery: GameQuery) =>
-  useData<Game>(
-    'games',
-    {
-      params: {
-        genres: gameQuery.genre?.id,
-        platforms: gameQuery.platform?.id,
-        search: gameQuery.search,
-        ordering: gameQuery.ordering,
-      },
+  new ReactQueryClient<Game>('games').getAllUseQuery(['games', gameQuery], {
+    params: {
+      genres: gameQuery.genre?.id,
+      parent_platforms: gameQuery.platform?.id,
+      search: gameQuery.search,
+      ordering: gameQuery.ordering,
     },
-    [gameQuery]
-  );
+  });
 
 export default useGames;
