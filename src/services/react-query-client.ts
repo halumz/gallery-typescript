@@ -1,6 +1,8 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import ApiClient, { FetchResponse } from './api-client';
 import { AxiosError, AxiosRequestConfig } from 'axios';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+
+import ApiClient from './api-client';
+import FetchResponse from '../models/FetchResponse';
 
 class ReactQueryClient<T> {
   apiClient: ApiClient<T>;

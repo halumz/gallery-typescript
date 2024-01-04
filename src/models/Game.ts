@@ -1,6 +1,6 @@
 import Platform from './Platform';
 
-interface Game {
+export default interface Game {
   id: number;
   name: string;
   background_image: string;
@@ -8,4 +8,3 @@ interface Game {
   metacritic: number;
   rating: number;
 }
-export default Game;

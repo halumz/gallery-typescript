@@ -1,4 +1,4 @@
-import { HStack, Text } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 
 import GameQuery from '../models/GameQuery';
 import useGenre from '../hooks/useGenre';
@@ -17,25 +17,17 @@ const SearchHeader = ({ gameQuery }: SearchHeaderProps) => {
   const selectedPlatform = usePlatform(gameQuery.platformId);
 
   const totalGamesCount = formatNumber(data?.pages?.[0]?.count);
-  const fetchedGamesCount = formatNumber(
-    data?.pages?.reduce((total, page) => total + page?.results?.length, 0)
-  );
 
   const text = [
+    totalGamesCount,
     selectedPlatform?.name || '',
     selectedGenre?.name || '',
     'Games ',
   ].join(' ');
   return (
-    <HStack paddingBottom="1rem">
-      <Text fontWeight="bold" fontSize="2xl">
-        {text}
-      </Text>
-      <Text
-        color="gray-500"
-        fontSize="2xl"
-      >{`(Showing ${fetchedGamesCount} of ${totalGamesCount})`}</Text>
-    </HStack>
+    <Heading as="h1" paddingBottom="1rem" fontSize="3xl">
+      {text}
+    </Heading>
   );
 };
 
