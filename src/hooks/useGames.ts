@@ -1,9 +1,10 @@
 import Game from '../models/Game';
-import GameQuery from '../models/GameQuery';
 import ReactQueryClient from '../services/react-query-client';
+import useGameQueryStore from '../state-management/gameQueryStore';
 
-const useGames = (gameQuery: GameQuery) =>
-  new ReactQueryClient<Game>('games').getAllInfinityUseQuery(
+const useGames = () => {
+  const gameQuery = useGameQueryStore((state) => state.gameQuery);
+  return new ReactQueryClient<Game>('games').getAllInfinityUseQuery(
     ['games', gameQuery],
     {
       params: {
@@ -15,5 +16,5 @@ const useGames = (gameQuery: GameQuery) =>
       },
     }
   );
-
+};
 export default useGames;

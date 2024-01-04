@@ -1,25 +1,21 @@
 import {
   Button,
+  Card,
   HStack,
-  Text,
+  Heading,
   Image,
   List,
   Spinner,
-  Card,
-  Heading,
+  Text,
 } from '@chakra-ui/react';
 
 import useGenres from '../hooks/useGenres';
+import useGameQueryStore from '../state-management/gameQueryStore';
 
-interface GenreListProps {
-  selectedGenreId?: number;
-  updateSelectedGenreId: (genreId: number) => void;
-}
+const GenreList = () => {
+  const selectedGenreId = useGameQueryStore((state) => state.gameQuery.genreId);
+  const setGenreId = useGameQueryStore((state) => state.setGenreId);
 
-const GenreList = ({
-  selectedGenreId,
-  updateSelectedGenreId,
-}: GenreListProps) => {
   const { data, isLoading, error } = useGenres();
   if (isLoading) {
     return (
@@ -54,10 +50,7 @@ const GenreList = ({
               objectFit="cover"
             />
 
-            <Button
-              variant="link"
-              onClick={() => updateSelectedGenreId(genre.id)}
-            >
+            <Button variant="link" onClick={() => setGenreId(genre.id)}>
               <Text
                 textAlign="left"
                 fontWeight={selectedGenreId === genre.id ? 'bold' : 'normal'}

@@ -1,18 +1,15 @@
 import { Heading } from '@chakra-ui/react';
 
-import GameQuery from '../models/GameQuery';
+import useGames from '../hooks/useGames';
 import useGenre from '../hooks/useGenre';
 import usePlatform from '../hooks/usePlatform';
-import useGames from '../hooks/useGames';
-
-interface SearchHeaderProps {
-  gameQuery: GameQuery;
-}
+import useGameQueryStore from '../state-management/gameQueryStore';
 
 const formatNumber = (num: number = 0) => new Intl.NumberFormat().format(num);
 
-const SearchHeader = ({ gameQuery }: SearchHeaderProps) => {
-  const { data } = useGames(gameQuery);
+const SearchHeader = () => {
+  const gameQuery = useGameQueryStore((state) => state.gameQuery);
+  const { data } = useGames();
   const selectedGenre = useGenre(gameQuery.genreId);
   const selectedPlatform = usePlatform(gameQuery.platformId);
 

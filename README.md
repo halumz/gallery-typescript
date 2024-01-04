@@ -98,6 +98,59 @@ const queryClient = new QueryClient()
 </QueryClientProvider>
 ```
 
+## Adding Zustand for state management
+
+Zustand is a small, fast and scalable bearbones state-management solution. It has a very small footprint and is very easy to use. Let's install Zustand.
+
+```bash
+yarn add zustand
+```
+
+Here is a small example of how to use Zustand.
+
+```tsx
+import create from 'zustand';
+
+type State = {
+  count: number;
+  increment: () => void;
+  decrement: () => void;
+};
+
+export const useStore = create<State>((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+  decrement: () => set((state) => ({ count: state.count - 1 })),
+}));
+```
+
+There is also a devtools for Zustand. Let's install it.
+
+```bash
+yarn add zustand-devtools
+```
+
+this is the way to use it.
+
+```tsx
+import create from 'zustand';
+import { devtools } from 'zustand/middleware';
+
+type State = {
+  count: number;
+  increment: () => void;
+  decrement: () => void;
+};
+
+export const useStore = create<State>(
+  devtools((set) => ({
+    count: 0,
+    increment: () => set((state) => ({ count: state.count + 1 })),
+    decrement: () => set((state) => ({ count: state.count - 1 })),
+  }))
+);
+```
+
 ## Deployment on gh-pages
 
 - Let's add gh-pages to our project.
