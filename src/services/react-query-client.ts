@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import ApiClient, { FetchResponse } from './api-client';
 import { AxiosError, AxiosRequestConfig } from 'axios';
 
@@ -23,6 +23,21 @@ class ReactQueryClient<T> {
       queryFn: () => this.apiClient.getAll(config),
       staleTime: this.staleTime,
       initialData: this.initialData,
+    });
+
+  getAllInfinityUseQuery = (queryKey: any[], config?: AxiosRequestConfig) =>
+    useInfiniteQuery<FetchResponse<T>, AxiosError>({
+      queryKey,
+      queryFn: ({ pageParam }) => {
+        if (config?.params) {
+          config.params.page = pageParam;
+        }
+        return this.apiClient.getAll(config);
+      },
+      getNextPageParam: (lastPage, allPages = []) =>
+        lastPage.next && allPages.length + 1,
+      initialPageParam: 1,
+      staleTime: this.staleTime,
     });
 }
 
