@@ -1,4 +1,4 @@
-import Platform from '../models/Platform';
+import Platform from '../entities/Platform.ts';
 import ReactQueryClient from '../services/react-query-client';
 import defaultPlatforms from '../data/platforms.ts';
 

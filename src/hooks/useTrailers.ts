@@ -1,4 +1,4 @@
-import Trailer from '../models/Trailer';
+import Trailer from '../entities/Trailer';
 import ReactQueryClient from '../services/react-query-client';
 
 const useTrailers = (id: number) =>

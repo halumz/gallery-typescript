@@ -1,4 +1,4 @@
-import Genre from '../models/Genre';
+import Genre from '../entities/Genre.ts';
 import ReactQueryClient from '../services/react-query-client';
 import defaultGenres from '../data/genres.ts';
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import GameQuery from '../models/GameQuery';
+import GameQuery from '../entities/GameQuery';
 
 const useGameQuery = () => {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);

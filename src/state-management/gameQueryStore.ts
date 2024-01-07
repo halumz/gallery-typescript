@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import GameQuery from '../models/GameQuery';
+import GameQuery from '../entities/GameQuery';
 
 type State = {
   gameQuery: GameQuery;

@@ -1,4 +1,4 @@
-import Screenshot from '../models/Screenshot';
+import Screenshot from '../entities/Screenshot';
 import ReactQueryClient from '../services/react-query-client';
 
 const useScreenshot = (id: number) =>

@@ -1,4 +1,4 @@
-import Game from '../models/Game';
+import Game from '../entities/Game';
 import ReactQueryClient from '../services/react-query-client';
 
 const useGame = (slug: string) =>

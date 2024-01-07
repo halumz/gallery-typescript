@@ -3,7 +3,7 @@ import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react';
 import PlatformList from './Platforms';
 import CriticScore from './CriticScore';
 import { cropImage } from '../services/image-url';
-import Game from '../models/Game';
+import Game from '../entities/Game';
 import Emojis from './Emoji';
 import { Link } from 'react-router-dom';
 
