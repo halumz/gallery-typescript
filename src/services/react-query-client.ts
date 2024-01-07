@@ -1,8 +1,9 @@
-import { AxiosError, AxiosRequestConfig } from 'axios';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { AxiosError, AxiosRequestConfig } from 'axios';
 
-import ApiClient from './api-client';
 import FetchResponse from '../models/FetchResponse';
+import GameQuery from '../models/GameQuery';
+import ApiClient from './api-client';
 
 class ReactQueryClient<T> {
   apiClient: ApiClient<T>;
@@ -19,7 +20,10 @@ class ReactQueryClient<T> {
     this.staleTime = staleTime;
   }
 
-  getAllUseQuery = (queryKey: any[], config?: AxiosRequestConfig) =>
+  getAllUseQuery = (
+    queryKey: (string | GameQuery)[],
+    config?: AxiosRequestConfig
+  ) =>
     useQuery<FetchResponse<T>, AxiosError>({
       queryKey,
       queryFn: () => this.apiClient.getAll(config),
@@ -27,7 +31,21 @@ class ReactQueryClient<T> {
       initialData: this.initialData,
     });
 
-  getAllInfinityUseQuery = (queryKey: any[], config?: AxiosRequestConfig) =>
+  getSingleUseQuery = (
+    queryKey: (string | GameQuery)[],
+    id: string | number,
+    config?: AxiosRequestConfig
+  ) =>
+    useQuery<T, AxiosError>({
+      queryKey,
+      queryFn: () => this.apiClient.get(id, config),
+      staleTime: this.staleTime,
+    });
+
+  getAllInfinityUseQuery = (
+    queryKey: (string | GameQuery)[],
+    config?: AxiosRequestConfig
+  ) =>
     useInfiniteQuery<FetchResponse<T>, AxiosError>({
       queryKey,
       queryFn: ({ pageParam }) => {
