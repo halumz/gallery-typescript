@@ -109,7 +109,7 @@ yarn add zustand
 Here is a small example of how to use Zustand.
 
 ```tsx
-import create from 'zustand';
+import { create } from 'zustand';
 
 type State = {
   count: number;
@@ -133,7 +133,7 @@ yarn add zustand-devtools
 this is the way to use it.
 
 ```tsx
-import create from 'zustand';
+import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 type State = {
@@ -150,6 +150,177 @@ export const useStore = create<State>(
   }))
 );
 ```
+
+## Routing with React Router Dom
+
+We will use [React Router Dom](https://reactrouter.com/web/guides/quick-start) for routing. React Router Dom is a very popular routing library for React. It is very easy to use and has many features. Let's install React Router Dom.
+
+```bash
+yarn add react-router-dom
+```
+
+This is a small example of how to use React Router Dom.
+
+```tsx
+const router = createRouter([
+  {
+    path: '/',
+    component: Home,
+  },
+  {
+    path: '/about',
+    component: About,
+  },
+]);
+
+<RouterProvider router={router} />;
+```
+
+### Navigation
+
+We can use `Link` and `NavLink` to navigate to different routes. `NavLink` is used to style the active link. And also we can use `useNavigate` hook to navigate to different routes.
+
+```tsx
+<Link to='/users'>Users</Link>
+
+// add "active" class if route matches the current URL
+<NavLink to='/users'>Users</NavLink>
+
+const navigate = useNavigate();
+const handleClick = () => {
+  navigate('/users');
+};
+```
+
+### Route params
+
+```tsx
+const router = createRouter([
+  {
+    path: '/',
+    component: Home,
+  },
+  {
+    path: '/users/:id',
+    component: UserDetailPage,
+  },
+]);
+
+// Get route params
+const { id } = useParams();
+// Get query params
+const [searchParams, setSearchParams] = useSearchParams();
+
+// Get current location
+const location = useLocation();
+```
+
+### Handling errors
+
+We can use `errorElement` to show error page if there is any error.
+
+```tsx
+const router = createRouter([
+  {
+    path: '/',
+    component: Home,
+    errorElement: <ErrorPage />,
+  },
+]);
+```
+
+We can use `useRouteError` hook to handle errors. `isRouteErrorResponse` function can ensure that the error is from the routing or the route is `not found`.
+
+```tsx
+const ErrorPage = () => {
+  const error = useRouteError();
+  return (
+    <>
+      <h1>OOps ... </h1>
+      <Text>
+        {isRouteErrorResponse(error)
+          ? 'Page Not found'
+          : 'Something went wrong'}
+      </Text>
+    </>
+  );
+};
+```
+
+### Nested routes
+
+```tsx
+const router = createRouter([
+  {
+    path: '/',
+    element: <HomePage />,
+    children: [
+      {
+        path: '',
+        element: <Home />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
+      },
+    ],
+  },
+]);
+
+const HomePage = () => {
+  return (
+    <div>
+      <h1>Home Page</h1>
+      // outlet will be replaced by the child route
+      <Outlet />
+    </div>
+  );
+};
+```
+
+### Private routes
+
+````tsx
+const router = createRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '',
+        element: <Home />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
+        // add a guard to check if the user is authenticated
+        canActivate: [isAuthenticated],
+      },
+    ],
+  },
+]);
+
+
+### Layout routes
+
+```tsx
+const router = createRouter([
+  {
+    // no path
+    element: <Layout />,
+    children: [
+      {
+        path: '',
+        element: <Home />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
+      },
+    ],
+  },
+]);
+````
 
 ## Deployment on gh-pages
 
