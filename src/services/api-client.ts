@@ -19,9 +19,9 @@ class ApiClient<T> {
       .get<FetchResponse<T>>(this.endpoint, config)
       .then((response) => response.data);
 
-  get = (id: string | number, config?: AxiosRequestConfig) =>
+  get = (config?: AxiosRequestConfig) =>
     axiosInstance
-      .get<T>(`${this.endpoint}/${id}`, config)
+      .get<T>(this.endpoint, config)
       .then((response) => response.data);
 }
 

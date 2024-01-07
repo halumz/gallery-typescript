@@ -32,13 +32,12 @@ class ReactQueryClient<T> {
     });
 
   getSingleUseQuery = (
-    queryKey: (string | GameQuery)[],
-    id: string | number,
+    queryKey: (string | number)[],
     config?: AxiosRequestConfig
   ) =>
     useQuery<T, AxiosError>({
       queryKey,
-      queryFn: () => this.apiClient.get(id, config),
+      queryFn: () => this.apiClient.get(config),
       staleTime: this.staleTime,
     });
 
